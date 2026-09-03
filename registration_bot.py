@@ -137,8 +137,8 @@ async def process_instagram(message: Message, state: FSMContext):
     await message.answer(
         "OFD PRIVATE SESSION\n"
         "06.09 / SAINT PETERSBURG\n\n"
-        "Сбор гостей — 17:00\n"
-        "Старт записи - 17:30\n\n"
+        "Сбор гостей — 16:30\n"
+        "Старт записи - 17:00\n\n"
         "📍 Севкабель Порт\n\n"
         "МУЗ порт\n"
         "Saint Petersburg, Gavan Historical Sector\n"
@@ -156,7 +156,11 @@ async def process_instagram(message: Message, state: FSMContext):
         "Проявляй себя — увидимся 6 сентября"
     )
     photo = FSInputFile("dress_code.jpg")
-    await message.answer_photo(photo, caption=dress_code_caption)
+    try:
+        await message.answer_photo(photo, caption=dress_code_caption)
+    except Exception as e:
+        logging.warning(f"Не удалось отправить фото дресс-кода: {e}")
+        await message.answer(dress_code_caption)
     await state.clear()
 
 
