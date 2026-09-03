@@ -100,7 +100,7 @@ class Registration(StatesGroup):
 @dp.message(CommandStart())
 async def cmd_start(message: Message, state: FSMContext):
     await state.set_state(Registration.waiting_for_full_name)
-    await message.answer("Йо! Как тебя зовут?")
+    await message.answer("Йо! Как тебя зовут? Напиши Имя и Фамилию.")
 
 
 @dp.message(Registration.waiting_for_full_name)
@@ -149,10 +149,10 @@ async def process_instagram(message: Message, state: FSMContext):
     )
 
     dress_code_caption = (
-        "И ещё немного про дресс-код 🖤\n"
+        "И ещё немного про дресс-код 🖤\n\n"
         "На площадке будет запись видео, нам важно сохранить цельную картинку в кадре. "
-        "Мы собрали визуальное направление по цветам и настроению — это не строгие рамки, а ориентир.\n"
-        "Выбирай образ, в котором тебе комфортно двигаться, танцевать и быть собой.\n"
+        "Мы собрали визуальное направление по цветам и настроению — это не строгие рамки, а ориентир.\n\n"
+        "Выбирай образ, в котором тебе комфортно двигаться, танцевать и быть собой.\n\n"
         "Проявляй себя — увидимся 6 сентября"
     )
     photo = FSInputFile("dress_code.jpg")
